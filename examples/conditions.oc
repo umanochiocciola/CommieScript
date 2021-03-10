@@ -9,8 +9,8 @@ get answer
 our good = 'good komrad!'
 our bad = 'fuck you blyat!'
 
-goto 14, ;answer == "yes" # when using strings in conditions you have to use " and not the sneaky '
-goto 17, 1                # using 1 as condition will obviously cause the goto statement to always take effect
+goto 14, ;answer == 'yes' #when using strings in conditions you have to use ' and not "
+goto 17, 1
 
 strike good
 goto 19, 1

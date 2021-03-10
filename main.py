@@ -1,5 +1,6 @@
 ## interpreter
-from sys import argv
+import sys
+import os
 
 
 def error(line, mof):
@@ -57,7 +58,7 @@ def interp(line):
         
         args = []
         for i in pis:
-            if i != '': args.append(f"'{i}'") 
+            if i != '': args.append(f'"{parse(i)}"') 
             else: continue
 
 
@@ -102,28 +103,34 @@ def OUR_goto(target, condition=1):
         try:
             line = int(target)-1
         except:  error(line, f'line argument must be a natural number, obviously')
+#
+    
 
-''' LISTS TODO
-def OUR_item(index, var, to):
+def OUR_append(var, what, typ='str'):
+    global variables
     if not(var in variables):
         error(line, f'the glorious republic doesn\'t have such variable: {var}')
+    if not(type(variables[var])==type([])):
+        error(line, f'item can be used only on lists')
     
-    if not()
-'''
+    try: what=eval(f'{typ}({what})')
+    except: error(line, f'{typ} is not a valid type or {what} (type {type(what)}) can\'t be converted to {typ}')
+    variables[var].append(what)
+
 ####################################################
 
 
 
-if len(argv) < 2:
-    error('terminal command', 'missing argument: file')
+if len(sys.argv) < 2:
+    print('missing argument: file'); exit(1)
 
-file = argv[1]
+file = sys.argv[1]
 
 try:
     with open(file, 'r') as f:
         program = f.readlines()
 except:
-    error('terminal command', f'{file} not found in our glorious republic')
+   print(f'{file} not found in our glorious republic');exit(1)
 #
 
 variables = {}

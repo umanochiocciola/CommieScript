@@ -1,0 +1,28 @@
+# Since our uses python's eval(), we automatically every python data structure
+# I've just added a append function
+# Let's see what we can do
+# notice that spaces are almost always important (especially in eval statements to isolate ;variables), be consistant with their usage
+
+# get a list of 5 items from inputs and then print it
+
+our prompt = 'new item: '
+our i = 0
+our myList = []
+our adding = ''
+
+# for loop
+
+strike prompt
+get adding
+append myList, ;adding, str # str type is deafult, so we could have written append myList, ;adding
+i = ;i + 1
+goto 13, ;i < 5
+
+# another for but iterating through a list
+# i'll just recycle the adding variable ;)
+i = 0
+
+adding = 'item ' + str( ;i ) + ': ' + str( ;myList [ ;i ] ) + '\n'
+strike adding
+i = ;i + 1
+goto 24, ;i < len( ;myList )
