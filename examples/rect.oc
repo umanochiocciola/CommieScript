@@ -1,0 +1,16 @@
+# COMPUTE RECTANGLE AREA GETTING WIDTH AND HEIGHT FROM INPUT
+
+our prompt1 = 'width: '  # variable declaration
+our prompt2 = 'height: '
+
+strike prompt1	# print variable
+get width, int	# store input in the new variable first of type int
+
+strike prompt2	# same as above
+get height, int
+
+our msg = '\nCOMRADES, THE RESULT IS: '
+our sum = ;width * ;height		# mathematical operation during variable declaration, using ;variable
+
+strike msg	#print result
+strike sum

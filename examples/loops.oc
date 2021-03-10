@@ -1,0 +1,24 @@
+# implementation of different loops in OurCode
+# with goto sintax:
+# goto <line>, <condition>
+
+our msg = 'true!'
+our title = '---while---\n'
+our cond = 1
+
+strike title
+# while (forever)
+strike msg
+goto 9, ;cond #comment out this line to check other loops
+
+#################
+title = '\n---for---\n'
+
+strike title
+our i = 0
+
+#for
+strike i
+i = ;i + 1
+goto 19, ;i < 10 # i<10 doesn't work because I'm kina idiot
+
