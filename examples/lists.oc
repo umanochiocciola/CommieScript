@@ -22,7 +22,7 @@ goto 13, ;i < 5
 # i'll just recycle the adding variable ;)
 i = 0
 
-adding = 'item ' + str( ;i ) + ': ' + str( ;myList [ ;i ] ) + '\n'
+adding = 'item ' + str( ;i ) + ': ' + str( ;myList [ ;i ] ) + '\n' #abusing of python here :P
 strike adding
 i = ;i + 1
 goto 24, ;i < len( ;myList )
