@@ -30,6 +30,11 @@ def parse(st):
     return ' '.join(a)
 
 
+
+def setline(lin):
+    global line
+    line = lin
+    
 def interp(line):
     #print(line)
     global variables
@@ -104,8 +109,33 @@ def OUR_goto(target, condition=1):
             line = int(target)-1
         except:  error(line, f'line argument must be a natural number, obviously')
 #
+
+################################################# functions
+def OUR_run(target):
+    global line, PopLine
+    
+    PopLine = line
+    
+    try:
+        line = int(funcs[target]) # without -1 because we don't want to exec OUR_work again
+    except:  error(line, f'argument must be a declared "work"')
+#
+
+def OUR_endwork(dummy='just because you always have an argument don\'t know why :|'):
+    global line, PopLine, EXECUTING
+    if PopLine==0:
+        PopLine = line
+
+    line = PopLine
+
+def OUR_work(name):
+    global funcs, line, EXECUTING
+    funcs[name] = line
+    EXECUTING = 0
     
 
+###############################################################
+    
 def OUR_append(var, what, typ='str'):
     global variables
     if not(var in variables):
@@ -116,7 +146,21 @@ def OUR_append(var, what, typ='str'):
     try: what=eval(f'{typ}({what})')
     except: error(line, f'{typ} is not a valid type or {what} (type {type(what)}) can\'t be converted to {typ}')
     variables[var].append(what)
-
+#
+'''
+def OUR_run(work):
+    global PopLine, line
+    if not(work in funcs):
+        error(line, f'no work called {work}')
+    
+    PopLine = line
+    
+    program = funcs(work).split('\n')
+    line = 0
+    while line < len(program):
+        interp(line)
+        line += 1
+'''
 ####################################################
 
 
@@ -134,8 +178,14 @@ except:
 #
 
 variables = {}
+funcs = {}
 
 line = 0
+PopLine = 0
+EXECUTING = 1
 while line < len(program):
-    interp(line)
+    #print(program[line].split(' ')[0].split('#')[0].replace('\n', ''))
+    #print(EXECUTING)
+    if EXECUTING: interp(line)
+    elif program[line].split(' ')[0].split('#')[0].replace('\n', '')=='endwork': EXECUTING = 1
     line += 1
