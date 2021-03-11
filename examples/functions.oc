@@ -1,0 +1,42 @@
+# Let's try if we can have a custom goto
+# that also take the line where it's called
+# 
+# for now i've not implemented the possibility to use arguments, but work functions
+# variables are global variables, because THERE IS NO PRIATE PROPERTY
+# and global variables can be accessed by functions as well
+#
+# I've alsto still have to make them able to return a value
+
+
+# let's define a newline var first
+our nl = '\n'
+
+work bob #start function named bob definition
+our msg = 'lol'
+strike msg
+strike nl
+endwork # end function definition
+
+
+
+our H = None # so undefined variables
+our W = None # we could have defined theese anywhere before the calling of the function (here before line 35) 
+
+work print_rect_surface
+# this will use global variables W and H as arguments
+our surface = ;H * ;W
+strike surface
+strike nl
+endwork
+
+
+
+run bob # run function named bob
+
+H = 5 # defining arguments
+W = 3
+run print_rect_surface # this will print 15
+
+H = 4
+W = 5
+run print_rect_surface # this will print 20
