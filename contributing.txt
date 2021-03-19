@@ -9,8 +9,11 @@ this will result in CommieScript like this:
   command_name arguments, taken
 
 you can check the existing code to see how to do stuff, like updating variables.
-
+it'd be nice if you provided some documentation about it as well
 You can obviously submit more than a single command, if you made something like the work, endwork, run system.
+
+If you are patient enough, you can also write some documentation about other commands oryou can transform the examples in documentation.
+This stuff will be put in the wiki page.
 
 When you have your thing done, send it to me with the pull requests section.
 I'll check it and if everything is ok I'll add it in the next release!
