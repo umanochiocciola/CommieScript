@@ -1,0 +1,18 @@
+This is OUR project and you can contribute directly to it.
+If you want to create your version, check LICENSE.txt, but if you'd like to add something to this version, continue reading.
+
+If you'd like to create your own command, follow this template:
+    def OUR_command_name(arguments, taken):
+        print(stuff happening)
+        # NO RETURN
+this will result in CommieScript like this:
+  command_name arguments, taken
+
+you can check the existing code to see how to do stuff, like updating variables.
+
+You can obviously submit more than a single command, if you made something like the work, endwork, run system.
+
+When you have your thing done, send it to me with the pull requests section.
+I'll check it and if everything is ok I'll add it in the next release!
+
+You'll be obviously be mentioned in contributors.txt
