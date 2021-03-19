@@ -70,7 +70,7 @@ def interp(line):
 
             args = ', '.join(args)
             #print(args)
-            try
+            try:
                 exec(f'OUR_{keyword}({args})')
             except:
                 error(line, f'invalid sintax, comrade.')
