@@ -1,5 +1,5 @@
 Kane License - adapted for CommieScript
 
-This is OUR coding language, you can use the enitrety or only parts of this code for free, just keep it open source and put a lik to this repo in credits.
+This is OUR coding language, you can use the enitrety or only parts of this code for free, just keep it open source and it'd be nice but you're not forced to put a lik to this repo in the credits.
 If you want to create an extension or modification of this thing, keeping the concept, you shoukd keep this license as well.
 If you'd like to contribute directly to this project, you can, this is OUR project. Just send me your code in the pull requests and i'll put it in (more information in contributing.txt).
