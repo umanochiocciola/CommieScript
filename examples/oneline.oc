@@ -1,0 +1,26 @@
+# to execute more commands in one single line, we can use the line separator.
+# by default it is 'THEN', but you can change it.
+# since CommieScript is not parsed, you should NEVER use the line separator, even in strings.
+
+# let's first define a print function
+our STR = None
+our nl = '\n'
+work print
+strike STR
+strike nl
+endwork
+
+# normally we'd call it like so
+STR = 'Hello, world!'
+run print
+
+#but we can so it on a single line by using our fellow comrade, the line separator
+
+STR = 'Hello from a oneliner!' THEN run print
+
+# if you don't like THEN, you can change it
+_LINE_SEPARATOR = 'whatever' # this is stupid, I suggest at least to use caps letters, just to make sure you'll never use it in string
+# now you'll be able to use 'THEN' in strings, but no more 'whatever'
+# _LINE_SEPARATOR is a normal variable, and you should never use it for other stuff
+
+STR = 'Hello from another oneliner!' whatever run print

@@ -20,7 +20,7 @@ endwork # end function definition
 
 
 our H = None # so undefined variables
-our W = None # we could have defined theese anywhere before the calling of the function (here before line 35) 
+our W = None # we could have declared theese anywhere before the calling of the function (here before line 35) 
 
 work print_rect_surface
 # this will use global variables W and H as arguments
@@ -30,13 +30,12 @@ strike nl
 endwork
 
 
-
 run bob # run function named bob
 
 H = 5 # defining arguments
 W = 3
 run print_rect_surface # this will print 15
 
-H = 4
-W = 5
+H = 4 THEN W = 5 # more commands in one line using THEN, I explain this better in examples/oneline.oc
+
 run print_rect_surface # this will print 20

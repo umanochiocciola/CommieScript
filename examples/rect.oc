@@ -4,7 +4,7 @@ our prompt1 = 'width: '  # variable declaration
 our prompt2 = 'height: '
 
 strike prompt1	# print variable
-get width, int	# store input in the new variable first of type int
+get width, int	# store input in the new variable width of type int
 
 strike prompt2	# same as above
 get height, int

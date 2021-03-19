@@ -39,40 +39,41 @@ def interp(line):
     #print(line)
     global variables
 
-    piece = program[line].replace('\n', '')
-    piece = piece.split('#')[0]    #comments
+    riga = program[line].replace('\n', '')
+    riga = riga.split('#')[0]    #comments
     
-    keyword = piece.split(' ')[0]
-    
-    
-    if piece == '' or spaces_only(piece):
-        return
-    
-    if keyword == 'our' or keyword in variables:
-        boi = piece.split(' = ')
-        if len(boi) != 2:
-            error(line, 'invalid variable declaration')
+    for piece in riga.split(' ' + variables.get('_LINE_SEPARATOR', 'THEN') + ' '):
+        keyword = piece.split(' ')[0]
         
-        name = boi[0].replace('our ', '')
-        variables[name] = eval(parse(boi[1]))
-    
-    else:
-        #try:
-        pis = piece.replace(f'{keyword} ', '').split(', '); #print(pis, keyword)
-        #pis.remove(keyword)
         
-        args = []
-        for i in pis:
-            if i != '': args.append(f'"{parse(i)}"') 
-            else: continue
+        if piece == '' or spaces_only(piece):
+            return
+        
+        if keyword == 'our' or keyword in variables:
+            boi = piece.split(' = ')
+            if len(boi) != 2:
+                error(line, 'invalid variable declaration')
+            
+            name = boi[0].replace('our ', '')
+            variables[name] = eval(parse(boi[1]))
+        
+        else:
+            #try:
+            pis = piece.replace(f'{keyword} ', '').split(', '); #print(pis, keyword)
+            #pis.remove(keyword)
+            
+            args = []
+            for i in pis:
+                if i != '': args.append(f'"{parse(i)}"') 
+                else: continue
 
 
-        args = ', '.join(args)
-        #print(args)
-        #try
-        exec(f'OUR_{keyword}({args})')
-        #except:
-        #    error(line, f'an error occurred while executing this, comrade.')
+            args = ', '.join(args)
+            #print(args)
+            #try
+            exec(f'OUR_{keyword}({args})')
+            #except:
+            #    error(line, f'an error occurred while executing this, comrade.')
 #
 ###########################################################
 ##          OUR FUNCTIONS
@@ -110,6 +111,32 @@ def OUR_goto(target, condition=1):
         except:  error(line, f'line argument must be a natural number, obviously')
 #
 
+def OUR_append(var, what, typ='str'):
+    global variables
+    if not(var in variables):
+        error(line, f'the glorious republic doesn\'t have such variable: {var}')
+    if not(type(variables[var])==type([])):
+        error(line, f'item can be used only on lists')
+    
+    try: what=eval(f'{typ}({what})')
+    except: error(line, f'{typ} is not a valid type or {what} (type {type(what)}) can\'t be converted to {typ}')
+    variables[var].append(what)
+#
+
+def OUR_fuck(var):
+    if not var in variables:
+        error(line, f'the glorious republic doesn\'t have such variable: {var}')
+    variables.pop(var)
+#
+
+def OUR_listall(dummy='', var=''):
+    if dummy = 'return':
+        variables[var] = variables
+    else:
+        for i in variables:
+            print(f'{i}: {repr(variables[i]) if type(variables[i])==type("") else variables[i]}')
+    
+
 ################################################# functions
 def OUR_run(target):
     global line, PopLine
@@ -135,32 +162,7 @@ def OUR_work(name):
     
 
 ###############################################################
-    
-def OUR_append(var, what, typ='str'):
-    global variables
-    if not(var in variables):
-        error(line, f'the glorious republic doesn\'t have such variable: {var}')
-    if not(type(variables[var])==type([])):
-        error(line, f'item can be used only on lists')
-    
-    try: what=eval(f'{typ}({what})')
-    except: error(line, f'{typ} is not a valid type or {what} (type {type(what)}) can\'t be converted to {typ}')
-    variables[var].append(what)
-#
-'''
-def OUR_run(work):
-    global PopLine, line
-    if not(work in funcs):
-        error(line, f'no work called {work}')
-    
-    PopLine = line
-    
-    program = funcs(work).split('\n')
-    line = 0
-    while line < len(program):
-        interp(line)
-        line += 1
-'''
+
 ####################################################
 
 
@@ -177,7 +179,9 @@ except:
    print(f'{file} not found in our glorious republic');exit(1)
 #
 
-variables = {}
+variables = {
+    '_LINE_SEPARATOR': 'THEN',
+}
 funcs = {}
 
 line = 0
@@ -186,6 +190,7 @@ EXECUTING = 1
 while line < len(program):
     #print(program[line].split(' ')[0].split('#')[0].replace('\n', ''))
     #print(EXECUTING)
+    
     if EXECUTING: interp(line)
     elif program[line].split(' ')[0].split('#')[0].replace('\n', '')=='endwork': EXECUTING = 1
     line += 1

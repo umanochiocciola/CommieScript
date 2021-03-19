@@ -1,0 +1,23 @@
+# let's have some more fun with fancy features
+
+our nl = '\n'
+
+our dummy = 'hel lo ,  w o rl d !1!111!'
+strike dummy THEN strike nl # THEN is used to execute many commands in one line, check oneline.oc
+
+# we can get rid of a variable to clean the ram by using fuck
+fuck dummy
+
+#strike dummy # this would throw an error, remove the first # to check
+
+# a little debug feature is
+listall
+# this will print every variable with their value
+
+our boi = 'hello'
+our grl = 'hi'
+
+strike nl
+listall
+
+
