@@ -3,7 +3,9 @@ previously OurCode
 
 A coding language for EVERYONE to feel the commieness while you code
 
-Version 0.3
+Version 0.4
+
+0.4: added fuck and listall, fixed something i don't remember -_-
 
 0.3: added functions!(kinda)
 
