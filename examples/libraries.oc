@@ -1,0 +1,11 @@
+# importing a libraby
+# and using its functions and variables
+
+WeHave example_library.ocl # relative path
+# <-- the code you find in example_library.ocl gets literally stuffed here
+
+# and now we can use its functions and variables!
+
+#listall uncomment this to see that we have msg and nl variables, defined in example_library.ocl
+
+msg = 'hello!' THEN run print_msg

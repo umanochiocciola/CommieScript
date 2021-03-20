@@ -1,0 +1,11 @@
+# example library
+# with example functions
+# .ocl stans for OurCodeLibrary to distinguish them from code
+
+
+our msg = ''
+our nl = '\n'
+
+work print_msg
+strike msg THEN strike nl
+endwork
