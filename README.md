@@ -9,6 +9,7 @@ Version 0.5
 
     - added placeholders
     - made goto better
+    - added libraries!
 
 0.4: added fuck and listall, fixed something i don't remember -_-
 
