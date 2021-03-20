@@ -3,7 +3,11 @@ previously OurCode
 
 A coding language for EVERYONE to feel the commieness while you code
 
-Version 0.4
+Version 0.5
+
+0.5 MAJOR UPDATE, SINTAX CHANGES MAD: check examples again, I've updated them.
+    - added placeholders
+    - made goto better
 
 0.4: added fuck and listall, fixed something i don't remember -_-
 
