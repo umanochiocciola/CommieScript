@@ -14,7 +14,7 @@ endwork
 STR = 'Hello, world!'
 run print
 
-#but we can so it on a single line by using our fellow comrade, the line separator
+#but we can do it on a single line by using our fellow comrade, the line separator
 
 STR = 'Hello from a oneliner!' THEN run print
 

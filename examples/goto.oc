@@ -1,0 +1,47 @@
+# program to demonstrate the usage of
+# 	goto <placeholder>, <condition>
+# and
+#	@<placeholder>
+#	placeholder <placeholder>
+
+our nl = '\n'
+our user_input = ''
+our msg = 'you said: '
+
+our instruction = 'echo program, type stop to stop.'
+strike instruction
+
+#simple goto while loop
+@while # create placeholder. Placeholders declared with @ are stored BEFORE code execution.
+
+get user_input, str
+strike msg
+strike user_input
+strike nl
+
+goto while, ;user_input != 'stop' # goto placholder named 'while' if variable user_input equals 'stop'
+
+# if we wanted another while, it would be annoyng having to use a different placeholder name
+# the placeholder function declares a placeholder DURING code execution and can overwrite @ declared ones
+
+strike nl
+our i = 0
+placeholder while
+
+strike i
+i = ;i + 1
+
+goto while, ;i < 10
+
+
+# @ declared placeholders are useful if you want to move the interpreter forward in lines
+strike nl
+
+our var = 'hello'
+goto jump_here, 1 # 1 means no condition, always jump
+
+var = 'I'll never be executed :('
+
+@ jump_here # you can put or not the space bitween @ and name
+strike var
+

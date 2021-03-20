@@ -72,8 +72,10 @@ def interp(line):
             #print(args)
             try:
                 exec(f'OUR_{keyword}({args})')
-            except:
+            except SyntaxError:
                 error(line, f'invalid sintax, comrade.')
+            except KeyboardInterrupt:
+                error(line, f'execution interrupted by user')
 #
 ###########################################################
 ##          OUR FUNCTIONS
@@ -107,9 +109,12 @@ def OUR_goto(target, condition=1):
     global line
     if eval(parse(condition)):
         try:
-            line = int(target)-1
-        except:  error(line, f'line argument must be a natural number, obviously')
+            line = int(placeholders[target])-1
+        except:  error(line, f'no such placeholder: {target}')
 #
+
+def OUR_placeholder(name):
+    placeholders[name] = line
 
 def OUR_append(var, what, typ='str'):
     global variables
@@ -184,6 +189,12 @@ variables = {
 }
 funcs = {}
 
+placeholders = {}
+for line in range(len(program)):# this cycle willl set placeholders before running
+    if program[line][0] == '@':
+        placeholders[program[line].split('#')[0].strip('@').strip('\n').strip(' ')] = line
+#print(placeholders)
+
 line = 0
 PopLine = 0
 EXECUTING = 1
@@ -191,6 +202,6 @@ while line < len(program):
     #print(program[line].split(' ')[0].split('#')[0].replace('\n', ''))
     #print(EXECUTING)
     
-    if EXECUTING: interp(line)
+    if EXECUTING and program[line][0] != '@': interp(line)
     elif program[line].split(' ')[0].split('#')[0].replace('\n', '')=='endwork': EXECUTING = 1
     line += 1

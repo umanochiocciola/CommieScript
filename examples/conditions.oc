@@ -1,6 +1,8 @@
 # IMPLEMENTATION OF IF STATEMENTS IN OURCODE
 # using goto:
-# goto <line> <condition>
+# goto <placeholder>, <condition>
+# and placeholders:
+# @placeholder
 
 our question = 'are you communist? (yes/no)'
 strike question
@@ -9,10 +11,15 @@ get answer
 our good = 'good komrad!'
 our bad = 'fuck you blyat!'
 
-goto 14, ;answer == 'yes' #when using strings in conditions you have to use ' and not "
-goto 17, 1
+goto good, ;answer == 'yes' #when using strings in conditions you have to use ' and not "
+goto bad, 1
 
+
+@good
 strike good
-goto 19, 1
+goto end, 1
 
+@bad
 strike bad
+
+@end

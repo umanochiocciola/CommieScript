@@ -1,5 +1,5 @@
-# Since our uses python's eval(), we automatically every python data structure
-# I've just added a append function
+# Since our uses python's eval(), we have automatically every python data structure
+# I've just added an append function
 # Let's see what we can do
 # notice that spaces are almost always important (especially in eval statements to isolate ;variables), be consistant with their usage
 
@@ -11,18 +11,19 @@ our myList = []
 our adding = ''
 
 # for loop
-
+@for # create a placeholder
 strike prompt
 get adding
 append myList, ;adding, str # str type is deafult, so we could have written append myList, ;adding
 i = ;i + 1
-goto 13, ;i < 5
+goto for, ;i < 5
 
 # another for but iterating through a list
 # i'll just recycle the adding variable ;)
 i = 0
 
+placeholder for # placeholder overwrites an existing placeholder, @can't
 adding = 'item ' + str( ;i ) + ': ' + str( ;myList [ ;i ] ) + '\n' #abusing of python here :P
 strike adding
 i = ;i + 1
-goto 24, ;i < len( ;myList )
+goto for, ;i < len( ;myList )

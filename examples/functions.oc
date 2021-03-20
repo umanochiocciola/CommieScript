@@ -5,7 +5,7 @@
 # variables are global variables, because THERE IS NO PRIATE PROPERTY
 # and global variables can be accessed by functions as well
 #
-# I've alsto still have to make them able to return a value
+# I've also still have to make them able to return a value
 
 
 # let's define a newline var first
