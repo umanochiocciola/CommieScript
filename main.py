@@ -45,6 +45,7 @@ def interp(line):
     for piece in riga.split(' ' + variables.get('_LINE_SEPARATOR', 'THEN') + ' '):
         keyword = piece.split(' ')[0]
         
+        if keyword in skip_guys: continue
         
         if piece == '' or spaces_only(piece):
             return
@@ -73,6 +74,8 @@ def interp(line):
             try:
                 exec(f'OUR_{keyword}({args})')
             except SyntaxError:
+                error(line, f'invalid sintax, comrade.')
+            except TypeError:
                 error(line, f'invalid sintax, comrade.')
             except KeyboardInterrupt:
                 error(line, f'execution interrupted by user')
@@ -140,7 +143,12 @@ def OUR_listall(dummy='', var=''):
     else:
         for i in variables:
             print(f'{i}: {repr(variables[i]) if type(variables[i])==type("") else variables[i]}')
-    
+ #
+ 
+#def OUR_WeHave(library):
+     
+         
+     
 
 ################################################# functions
 def OUR_run(target):
@@ -175,7 +183,7 @@ def OUR_work(name):
 if len(sys.argv) < 2:
     print('missing argument: file'); exit(1)
 
-file = sys.argv[1]
+file = sys.argv[1].replace('\\', '/')
 
 try:
     with open(file, 'r') as f:
@@ -184,16 +192,42 @@ except:
    print(f'{file} not found in our glorious republic');exit(1)
 #
 
+# this cycle will import libraries
+buff = program
+path = '/'.join(file.split('/')[:-1])
+for line in range(len(program)):
+    if ' ' in program[line] and program[line].split()[0] == 'WeHave':
+        try:
+            with open(f'{path}/{program[line].split()[1]}', 'r') as f:
+                module = f.readlines()
+                #print(module)
+        except:
+            error(line, f'unknown library: {program[line].split()[1]}')
+         
+        module.reverse()
+        for i in module:
+            #print(f'  putting {i} in buff')
+            buff.insert(line+1, i)
+program = buff
+#print(''.join(program)); print('\n\n')
+
 variables = {
     '_LINE_SEPARATOR': 'THEN',
+    '_FILE_PATH': path,
 }
 funcs = {}
 
 placeholders = {}
-for line in range(len(program)):# this cycle willl set placeholders before running
+for line in range(len(program)):# this cycle willl set placeholdersbefore running
     if program[line][0] == '@':
         placeholders[program[line].split('#')[0].strip('@').strip('\n').strip(' ')] = line
+    
 #print(placeholders)
+
+skip_guys = [
+    '@',
+    'WeHave'
+]
 
 line = 0
 PopLine = 0
@@ -202,6 +236,6 @@ while line < len(program):
     #print(program[line].split(' ')[0].split('#')[0].replace('\n', ''))
     #print(EXECUTING)
     
-    if EXECUTING and program[line][0] != '@': interp(line)
+    if EXECUTING: interp(line)
     elif program[line].split(' ')[0].split('#')[0].replace('\n', '')=='endwork': EXECUTING = 1
     line += 1
