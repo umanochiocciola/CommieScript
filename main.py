@@ -130,7 +130,7 @@ def OUR_fuck(var):
 #
 
 def OUR_listall(dummy='', var=''):
-    if dummy = 'return':
+    if dummy == 'return':
         variables[var] = variables
     else:
         for i in variables:
